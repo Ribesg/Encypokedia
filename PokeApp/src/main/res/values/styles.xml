@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   <style name="Theme.Encypokedia" parent="Theme.AppCompat">
+      <item name="colorPrimary">#F00</item> <!-- TODO Just a test -->
+   </style>
+
+</resources>
