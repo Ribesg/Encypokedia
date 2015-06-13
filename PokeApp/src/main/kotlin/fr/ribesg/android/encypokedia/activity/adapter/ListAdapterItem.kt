@@ -1,4 +1,4 @@
-package fr.ribesg.android.encypokedia.tools.listadapter
+package fr.ribesg.android.encypokedia.activity.adapter
 
 import android.content.Context
 import android.view.View

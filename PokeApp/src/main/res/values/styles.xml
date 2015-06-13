@@ -2,7 +2,7 @@
 <resources>
 
    <style name="Theme.Encypokedia" parent="Theme.AppCompat">
-      <item name="colorPrimary">#F00</item> <!-- TODO Just a test -->
+      <!-- <item name="colorPrimary">#F00</item> -->
    </style>
 
 </resources>
