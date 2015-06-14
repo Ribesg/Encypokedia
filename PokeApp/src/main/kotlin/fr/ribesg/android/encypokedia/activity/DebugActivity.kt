@@ -26,10 +26,7 @@ class DebugActivity : AppCompatActivity() {
             }
 
             button("Main").onClick {
-                val alert = alert("That's a lot of data, eh", "Loading...")
-                alert.show()
                 startActivity<MainActivity>()
-                alert.dismiss()
             }
 
             button("List Demo").onClick {

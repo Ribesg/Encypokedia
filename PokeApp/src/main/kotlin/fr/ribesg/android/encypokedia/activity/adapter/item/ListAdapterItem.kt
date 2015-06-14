@@ -1,4 +1,4 @@
-package fr.ribesg.android.encypokedia.activity.adapter
+package fr.ribesg.android.encypokedia.activity.adapter.item
 
 import android.content.Context
 import android.view.View

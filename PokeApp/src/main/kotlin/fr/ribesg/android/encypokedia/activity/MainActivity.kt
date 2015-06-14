@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         viewPager {
             id = ViewUtils.generateViewId()
             adapter = FragAdapter(getSupportFragmentManager(), listOf(
-                HomeFragment(getContext()),
+                //HomeFragment(getContext()),
                 ListFragment(getContext())
             ))
         }

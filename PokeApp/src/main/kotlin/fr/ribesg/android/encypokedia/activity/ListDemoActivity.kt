@@ -10,7 +10,7 @@ import android.widget.TextView
 import fr.ribesg.android.encypokedia.activity.adapter.ListAdapter
 import fr.ribesg.android.encypokedia.dsl
 import fr.ribesg.android.encypokedia.rand
-import fr.ribesg.android.encypokedia.activity.adapter.ListAdapterItem
+import fr.ribesg.android.encypokedia.activity.adapter.item.ListAdapterItem
 import org.jetbrains.anko.*
 
 /**

@@ -3,6 +3,7 @@ package fr.ribesg.android.encypokedia.activity.adapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import fr.ribesg.android.encypokedia.activity.adapter.item.ListAdapterItem
 import java.util.LinkedList
 
 /**
