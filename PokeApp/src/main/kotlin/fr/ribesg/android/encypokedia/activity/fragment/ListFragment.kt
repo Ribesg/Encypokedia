@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import fr.ribesg.android.encypokedia.R
 import fr.ribesg.android.encypokedia.activity.adapter.PokemonListAdapter
 import fr.ribesg.android.encypokedia.format
 import org.jetbrains.anko.*
@@ -20,6 +21,7 @@ class ListFragment() : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, bundle: Bundle?): View? =
         verticalLayout {
             editText {
+                hintResource = R.string.filter
                 textChangedListener {
                     onTextChanged { text, start, before, count ->
                         search(getText().toString())
@@ -28,6 +30,7 @@ class ListFragment() : Fragment() {
             }
             listView = listView {
                 adapter = PokemonListAdapter(ctx)
+                requestFocus()
             }
             listView
         }
