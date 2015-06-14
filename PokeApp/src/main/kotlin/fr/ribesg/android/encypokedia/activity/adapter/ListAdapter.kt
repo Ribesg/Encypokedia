@@ -12,45 +12,57 @@ import java.util.LinkedList
  *
  * @author Ribesg
  */
-class ListAdapter<T : ListAdapterItem>(content: Iterable<T>? = null) : BaseAdapter() {
+open class ListAdapter<T : ListAdapterItem>(content: Iterable<T>? = null) : BaseAdapter() {
 
     /**
      * Internal List
      */
-    private val list: MutableList<T>
+    val list: MutableList<T>
+
+    /**
+     * Visible List
+     */
+    val view: MutableList<T>
 
     /**
      * Creates the internal list and populate it with provided items.
      */
     init {
-        this.list = LinkedList()
+        list = LinkedList()
         if (content != null) {
-            this.list.addAll(content)
+            list.addAll(content)
         }
+        view = LinkedList()
+        view.addAll(this.list)
+    }
+
+    fun replaceList(list: List<T>) {
+        view.clear()
+        view.addAll(list)
     }
 
     /**
      * Gets a View from the Item matched by the provided position.
      */
     override fun getView(pos: Int, old: View?, parent: ViewGroup): View? =
-        this.getItem(pos)?.getView(old, parent)
+        getItem(pos)?.getView(old, parent)
 
     /**
      * Gets the Item at the provided position.
      */
     override fun getItem(pos: Int): T? =
-        if (pos < this.list.size()) this.list[pos] else null
+        if (pos < view.size()) view[pos] else null
 
     /**
      * Gets the Item's ID at the provided position.
      */
     override fun getItemId(pos: Int): Long =
-        this.getItem(pos)?.id ?: -1
+        getItem(pos)?.id ?: -1
 
     /**
      * Gets the Item count.
      */
-    override fun getCount(): Int = this.list.size()
+    override fun getCount(): Int = view.size()
 
     /**
      * Specifies that IDs of Items never change.
