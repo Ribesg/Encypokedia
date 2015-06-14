@@ -1,11 +1,12 @@
 package fr.ribesg.android.encypokedia.activity.adapter.item
 
 import android.content.Context
-import android.graphics.drawable.Drawable
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import com.github.salomonbrys.kotson.string
 import com.google.gson.JsonObject
+import fr.ribesg.android.encypokedia.Data
 import fr.ribesg.android.encypokedia.format
 import org.jetbrains.anko.*
 
@@ -15,33 +16,23 @@ import org.jetbrains.anko.*
 class PokemonItem(val i: Int, val pkmn: JsonObject, ctx: Context) : ListAdapterItem(ctx) {
     override val id: Long = i.toLong()
     val name = pkmn["name"].string
-    val spriteName = name.toLowerCase()
-        .replace("♂", "-m")
-        .replace("♀", "-f")
-        .replace("'", "")
-        .replace(".", "")
-        .replace(' ', '-')
-        .replace('é', 'e')
 
     override fun getView(old: View?, parent: ViewGroup): View? {
         return ctx.linearLayout {
             imageView {
-                image = Drawable.createFromStream(
-                    ctx.getAssets().open("sprites/pokemon/regular/${spriteName}.png"),
-                    spriteName
-                )
-            }.layoutParams {
-                width = 40 * 2
-                height = 30 * 2
-            }
+                image = Data.getSprite(ctx, name)
+                gravity = Gravity.CENTER_VERTICAL
+                paddingRight = 5
+            }.layoutParams(80, 60)
             textView {
                 text = "#${i.format(3)} $name"
                 textSize = 24f
+                gravity = Gravity.CENTER_VERTICAL
             }
             onClick {
                 ctx.toast("Selected $name!")
             }
-            paddingVertical = 10
+            paddingVertical = 8
         }
     }
 }
