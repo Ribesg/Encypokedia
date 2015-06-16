@@ -1,10 +1,12 @@
 package fr.ribesg.android.encypokedia.activity.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ListView
 import fr.ribesg.android.encypokedia.R
 import fr.ribesg.android.encypokedia.activity.adapter.PokemonListAdapter
@@ -27,9 +29,22 @@ class ListFragment() : Fragment() {
                         search(getText().toString())
                     }
                 }
+                onFocusChange { view, hasFocus ->
+                    if (!hasFocus) {
+                        val imm = ctx.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                        imm.hideSoftInputFromWindow(view.windowToken, 0)
+                    }
+                }
             }
             listView = listView {
                 adapter = PokemonListAdapter(ctx)
+                onTouch { view, event ->
+                    if (!view.isFocused()) {
+                        view.requestFocus()
+                    }
+                    false
+                }
+
                 requestFocus()
             }
             listView
@@ -49,7 +64,6 @@ class ListFragment() : Fragment() {
                 }
             }
             adapter.replaceList(newList)
-            adapter.notifyDataSetChanged()
             listView!!.setSelection(0)
         }
     }

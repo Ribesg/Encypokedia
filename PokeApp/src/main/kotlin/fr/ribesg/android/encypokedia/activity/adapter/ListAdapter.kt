@@ -39,6 +39,7 @@ open class ListAdapter<T : ListAdapterItem>(content: Iterable<T>? = null) : Base
     fun replaceList(list: List<T>) {
         view.clear()
         view.addAll(list)
+        notifyDataSetChanged()
     }
 
     /**
