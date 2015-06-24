@@ -37,7 +37,7 @@ class ListFragment() : Fragment() {
                 }
             }
             listView = listView {
-                adapter = PokemonListAdapter(ctx)
+                adapter = PokemonListAdapter(this)
                 onTouch { view, event ->
                     if (!view.isFocused()) {
                         view.requestFocus()
@@ -56,7 +56,7 @@ class ListFragment() : Fragment() {
             val newList = try {
                 query.toInt() // Throws exception if NaN
                 adapter.list.filter {
-                    it.i.format(3).contains(query)
+                    it.num.format(3).contains(query)
                 }
             } catch (e: NumberFormatException) {
                 adapter.list.filter {

@@ -56,4 +56,6 @@ object Data {
             bitmapDrawable
         }
 
+    fun getAnimatedSpriteFilePath(num: Int): String
+        = "file:///android_asset/animated-sprites/" + num.format(3) + ".gif"
 }

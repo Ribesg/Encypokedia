@@ -4,17 +4,19 @@ import android.content.Context
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.github.salomonbrys.kotson.string
 import com.google.gson.JsonObject
 import fr.ribesg.android.encypokedia.Data
+import fr.ribesg.android.encypokedia.activity.MainActivity
 import fr.ribesg.android.encypokedia.format
 import org.jetbrains.anko.*
 
 /**
  * @author Ribesg
  */
-class PokemonItem(val i: Int, val pkmn: JsonObject, ctx: Context) : ListAdapterItem(ctx) {
-    override val id: Long = i.toLong()
+class PokemonItem(val num: Int, val pkmn: JsonObject, ctx: Context) : ListAdapterItem(ctx) {
+    override val id: Long = num.toLong()
     val name = pkmn["name"].string
 
     override fun getView(old: View?, parent: ViewGroup): View? {
@@ -22,17 +24,21 @@ class PokemonItem(val i: Int, val pkmn: JsonObject, ctx: Context) : ListAdapterI
             imageView {
                 image = Data.getSprite(ctx, name)
                 gravity = Gravity.CENTER_VERTICAL
-                paddingRight = 5
-            }.layoutParams(80, 60)
+                paddingRight = ctx.dip(5)
+            }.layoutParams {
+                width = ctx.dip(60)
+                height = ctx.dip(45)
+            }
             textView {
-                text = "#${i.format(3)} $name"
-                textSize = 24f
+                text = "#${num.format(3)} $name"
+                textSize = ctx.px2dip(50)
                 gravity = Gravity.CENTER_VERTICAL
             }
             onClick {
                 ctx.toast("Selected $name!")
+                MainActivity.onPkmnSelected(num)
             }
-            paddingVertical = 8
+            paddingVertical = ctx.dip(4)
         }
     }
 }

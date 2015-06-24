@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import fr.ribesg.android.encypokedia.activity.adapter.ListAdapter
+import fr.ribesg.android.encypokedia.activity.adapter.item.ListAdapterItem
 import fr.ribesg.android.encypokedia.dsl
 import fr.ribesg.android.encypokedia.rand
-import fr.ribesg.android.encypokedia.activity.adapter.item.ListAdapterItem
 import org.jetbrains.anko.*
 
 /**
@@ -79,7 +79,7 @@ class ListDemoActivity : AppCompatActivity() {
          * providing a list of 3 of our items.
          */
         listView {
-            adapter = ListAdapter(
+            adapter = ListAdapter(this,
                 listOf(
                     Item(this@ListDemoActivity, "A"),
                     Item(this@ListDemoActivity, "X", "Y"),

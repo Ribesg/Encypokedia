@@ -3,6 +3,7 @@ package fr.ribesg.android.encypokedia.activity.adapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ListView
 import fr.ribesg.android.encypokedia.activity.adapter.item.ListAdapterItem
 import java.util.LinkedList
 
@@ -12,7 +13,7 @@ import java.util.LinkedList
  *
  * @author Ribesg
  */
-open class ListAdapter<T : ListAdapterItem>(content: Iterable<T>? = null) : BaseAdapter() {
+open class ListAdapter<T : ListAdapterItem>(val listView: ListView, content: Iterable<T>? = null) : BaseAdapter() {
 
     /**
      * Internal List
@@ -40,6 +41,7 @@ open class ListAdapter<T : ListAdapterItem>(content: Iterable<T>? = null) : Base
         view.clear()
         view.addAll(list)
         notifyDataSetChanged()
+        listView.setSelection(0)
     }
 
     /**
