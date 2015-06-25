@@ -1,12 +1,15 @@
 package fr.ribesg.android.encypokedia
 
 import android.content.Context
+import android.content.res.AssetManager
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import com.github.salomonbrys.kotson.obj
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import pl.droidsonroids.gif.GifDrawable
+import java.io.FileNotFoundException
 import java.util.HashMap
 
 /**
@@ -56,6 +59,14 @@ object Data {
             bitmapDrawable
         }
 
-    fun getAnimatedSpriteFilePath(num: Int): String
-        = "file:///android_asset/animated-sprites/" + num.format(3) + ".gif"
+    fun getGif(assets: AssetManager, num: Int): GifDrawable = try {
+        GifDrawable(assets, "animated-sprites/" + num.format(3) + ".gif")
+    } catch (e: FileNotFoundException) {
+        if (num != 0) {
+            getGif(assets, 0)
+        } else {
+            throw RuntimeException("Missing file in assets", e)
+        }
+    }
+
 }

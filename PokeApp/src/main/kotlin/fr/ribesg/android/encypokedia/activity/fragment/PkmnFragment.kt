@@ -8,54 +8,67 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import fr.ribesg.android.encypokedia.format
+import fr.ribesg.android.encypokedia.Data
+import fr.ribesg.android.encypokedia.activity.MainActivity
+import fr.ribesg.android.encypokedia.dsl
 import org.jetbrains.anko.*
-import pl.droidsonroids.gif.GifDrawable
+import kotlin.properties.Delegates
 
 /**
  * @author Ribesg
  */
 class PkmnFragment() : Fragment() {
 
-    var imageView: ImageView? = null
-    var numTextView: TextView? = null
-    var nameTextView: TextView? = null
-    var descTextView: TextView? = null
+    var imageView: ImageView by Delegates.notNull()
+    var numTextView: TextView by Delegates.notNull()
+    var nameTextView: TextView by Delegates.notNull()
+    var descTextView: TextView by Delegates.notNull()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, bundle: Bundle?): View? =
-        verticalLayout {
-            linearLayout {
-                linearLayout {
-                    imageView = imageView {
-
-                    }
-                    imageView
-
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, bundle: Bundle?): View? = ctx.dsl {
+        relativeLayout {
+            frameLayout {
+                id = 1
+                imageView = imageView().layoutParams {
                     gravity = Gravity.CENTER
-                }.layoutParams {
-                    width = dip(175)
-                    height = dip(175)
-                    margin = dip(5)
                 }
-                verticalLayout {
-                    numTextView = textView()
-                    numTextView
-                    nameTextView = textView()
-                    nameTextView
-                }
+            }.layoutParams {
+                width = dip(235)
+                height = dip(190)
+                margin = dip(1)
+                alignParentTop()
+                alignParentLeft()
             }
-            descTextView = textView()
+            numTextView = textView {
+                id = 2
+            }.layoutParams {
+                rightOf(1)
+            }
+            nameTextView = textView {
+                id = 3
+            }.layoutParams {
+                rightOf(1)
+                below(2)
+            }
+            descTextView = textView {
+                id = 4
+            }.layoutParams {
+                alignParentLeft()
+                below(1)
+            }
+
+            gravity = Gravity.TOP
         }
+    }
 
     fun setPkmn(num: Int, name: String) {
-        val gif = GifDrawable(ctx.getAssets(), "animated-sprites/" + num.format(3) + ".gif")
-        imageView!!.layoutParams!!.width = gif.getIntrinsicWidth() * 2
-        imageView!!.layoutParams!!.height = gif.getIntrinsicHeight() * 2
-        imageView!!.image = gif
+        val gif = Data.getGif(ctx.getAssets(), num)
+        imageView.getLayoutParams().width = dip(gif.getIntrinsicWidth())
+        imageView.getLayoutParams().height = dip(gif.getIntrinsicHeight())
+        imageView.image = gif
 
-        numTextView!!.text = '#' + num.toString()
-        nameTextView!!.text = name
-        descTextView!!.text = "// TODO Description should be here"
+        numTextView.text = '#' + num.toString()
+        nameTextView.text = name
+        descTextView.text = "// TODO Description should be here"
     }
 
 }

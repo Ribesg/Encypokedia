@@ -11,6 +11,7 @@ import org.jetbrains.anko.adapter
 import org.jetbrains.anko.id
 import org.jetbrains.anko.onPageChangeListener
 import org.jetbrains.anko.viewPager
+import kotlin.properties.Delegates
 
 /**
  * @author Ribesg
@@ -18,6 +19,8 @@ import org.jetbrains.anko.viewPager
 class MainActivity : AppCompatActivity() {
 
     companion object {
+
+        public var instance: MainActivity by Delegates.notNull()
 
         private var pkmnFrag: PkmnFragment? = null
         private var viewPager: ViewPager? = null
@@ -33,6 +36,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
+
+        instance = this
 
         pkmnFrag = PkmnFragment()
 
