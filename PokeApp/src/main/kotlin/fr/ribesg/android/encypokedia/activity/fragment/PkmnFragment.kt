@@ -17,29 +17,45 @@ import pl.droidsonroids.gif.GifDrawable
  */
 class PkmnFragment() : Fragment() {
 
-    var textView: TextView? = null
     var imageView: ImageView? = null
+    var numTextView: TextView? = null
+    var nameTextView: TextView? = null
+    var descTextView: TextView? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, bundle: Bundle?): View? =
         verticalLayout {
-            textView = textView()
-            imageView = imageView {
-                scaleType = ImageView.ScaleType.CENTER_INSIDE
-                setAdjustViewBounds(true)
-            }.layoutParams {
-                width = dip(125)
-                height = dip(125)
+            linearLayout {
+                linearLayout {
+                    imageView = imageView {
+
+                    }
+                    imageView
+
+                    gravity = Gravity.CENTER
+                }.layoutParams {
+                    width = dip(175)
+                    height = dip(175)
+                    margin = dip(5)
+                }
+                verticalLayout {
+                    numTextView = textView()
+                    numTextView
+                    nameTextView = textView()
+                    nameTextView
+                }
             }
-
-            textView
-            imageView
-
-            gravity = Gravity.CENTER_VERTICAL
+            descTextView = textView()
         }
 
-    fun setPkmn(num: Int) {
-        textView?.text = num.toString()
-        imageView?.image = GifDrawable(ctx.getAssets(), "animated-sprites/" + num.format(3) + ".gif")
+    fun setPkmn(num: Int, name: String) {
+        val gif = GifDrawable(ctx.getAssets(), "animated-sprites/" + num.format(3) + ".gif")
+        imageView!!.layoutParams!!.width = gif.getIntrinsicWidth() * 2
+        imageView!!.layoutParams!!.height = gif.getIntrinsicHeight() * 2
+        imageView!!.image = gif
+
+        numTextView!!.text = '#' + num.toString()
+        nameTextView!!.text = name
+        descTextView!!.text = "// TODO Description should be here"
     }
 
 }

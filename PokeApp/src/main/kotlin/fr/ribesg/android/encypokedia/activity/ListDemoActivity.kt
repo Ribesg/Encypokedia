@@ -80,11 +80,11 @@ class ListDemoActivity : AppCompatActivity() {
          */
         listView {
             adapter = ListAdapter(this,
-                listOf(
-                    Item(this@ListDemoActivity, "A"),
-                    Item(this@ListDemoActivity, "X", "Y"),
-                    Item(this@ListDemoActivity, 1.toString(), 2.toString())
-                )
+                                  listOf(
+                                      Item(this@ListDemoActivity, "A"),
+                                      Item(this@ListDemoActivity, "X", "Y"),
+                                      Item(this@ListDemoActivity, 1.toString(), 2.toString())
+                                  )
             )
         }
     }

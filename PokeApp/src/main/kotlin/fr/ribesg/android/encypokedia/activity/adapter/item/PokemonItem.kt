@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.github.salomonbrys.kotson.string
 import com.google.gson.JsonObject
 import fr.ribesg.android.encypokedia.Data
@@ -36,7 +35,7 @@ class PokemonItem(val num: Int, val pkmn: JsonObject, ctx: Context) : ListAdapte
             }
             onClick {
                 ctx.toast("Selected $name!")
-                MainActivity.onPkmnSelected(num)
+                MainActivity.onPkmnSelected(num, name)
             }
             paddingVertical = ctx.dip(4)
         }

@@ -3,7 +3,6 @@ package fr.ribesg.android.encypokedia.activity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import fr.ribesg.android.encypokedia.ViewUtils
 import fr.ribesg.android.encypokedia.activity.adapter.FragAdapter
 import fr.ribesg.android.encypokedia.activity.fragment.HomeFragment
 import fr.ribesg.android.encypokedia.activity.fragment.ListFragment
@@ -24,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         private var viewPager: ViewPager? = null
         private var onPkmnFragment: Boolean = false
 
-        fun onPkmnSelected(num: Int) {
-            pkmnFrag?.setPkmn(num)
+        fun onPkmnSelected(num: Int, name: String) {
+            pkmnFrag?.setPkmn(num, name)
             viewPager?.setCurrentItem(2, true)
             onPkmnFragment = true
         }
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         pkmnFrag = PkmnFragment()
 
         viewPager = viewPager {
-            id = ViewUtils.generateViewId()
+            id = 1
             adapter = FragAdapter(getSupportFragmentManager(), listOf(
                 HomeFragment(),
                 ListFragment(),
