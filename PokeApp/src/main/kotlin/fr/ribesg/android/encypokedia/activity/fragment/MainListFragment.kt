@@ -16,7 +16,7 @@ import org.jetbrains.anko.*
 /**
  * @author Ribesg
  */
-class ListFragment() : Fragment() {
+class MainListFragment() : Fragment() {
 
     var listView: ListView? = null
 

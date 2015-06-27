@@ -12,8 +12,6 @@ class DebugActivity : AppCompatActivity() {
     override fun onCreate(b: Bundle?) {
         super.onCreate(b)
 
-        getSupportActionBar().hide()
-
         verticalLayout {
 
             paddingLeft = pad

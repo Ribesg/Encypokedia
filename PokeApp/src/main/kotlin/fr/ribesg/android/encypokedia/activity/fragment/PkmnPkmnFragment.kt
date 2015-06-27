@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import fr.ribesg.android.encypokedia.Data
-import fr.ribesg.android.encypokedia.activity.MainActivity
 import fr.ribesg.android.encypokedia.dsl
 import org.jetbrains.anko.*
 import kotlin.properties.Delegates
@@ -17,7 +16,7 @@ import kotlin.properties.Delegates
 /**
  * @author Ribesg
  */
-class PkmnFragment() : Fragment() {
+class PkmnPkmnFragment(val num: Int, val name: String) : Fragment() {
 
     var imageView: ImageView by Delegates.notNull()
     var numTextView: TextView by Delegates.notNull()
@@ -57,10 +56,12 @@ class PkmnFragment() : Fragment() {
             }
 
             gravity = Gravity.TOP
+
+            setPkmn(num, name)
         }
     }
 
-    fun setPkmn(num: Int, name: String) {
+    private fun setPkmn(num: Int, name: String) {
         val gif = Data.getGif(ctx.getAssets(), num)
         imageView.getLayoutParams().width = dip(gif.getIntrinsicWidth())
         imageView.getLayoutParams().height = dip(gif.getIntrinsicHeight())

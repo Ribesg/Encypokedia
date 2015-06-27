@@ -16,7 +16,7 @@ import org.jetbrains.anko.verticalLayout
 /**
  * @author Ribesg
  */
-class HomeFragment() : Fragment() {
+class MainHomeFragment() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, bundle: Bundle?): View? {
         return verticalLayout {

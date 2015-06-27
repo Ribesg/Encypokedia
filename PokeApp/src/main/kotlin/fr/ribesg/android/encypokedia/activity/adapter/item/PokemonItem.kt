@@ -34,7 +34,6 @@ class PokemonItem(val num: Int, val pkmn: JsonObject, ctx: Context) : ListAdapte
                 gravity = Gravity.CENTER_VERTICAL
             }
             onClick {
-                ctx.toast("Selected $name!")
                 MainActivity.onPkmnSelected(num, name)
             }
             paddingVertical = ctx.dip(4)
